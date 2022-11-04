@@ -1,4 +1,6 @@
-export const robots = [
+import { Robot } from './models/types';
+
+export const robots: Array<Robot> = [
   {
     id: 1,
     name: 'Leanne Graham',

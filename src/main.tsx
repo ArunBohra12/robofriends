@@ -6,7 +6,7 @@ import store from './redux/store';
 
 import 'tachyons';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <Provider store={store}>
     <App />
   </Provider>
