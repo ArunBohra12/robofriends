@@ -1,16 +1,17 @@
 import * as constants from '../constants';
+import { GetRobots, GetRobotsAction, RobotsSearchAction, SearchState } from '../../models/reducerTypes';
 
-const initialStateSearch = {
+const initialStateSearch: SearchState = {
   searchField: '',
 };
 
-const initialStateRobots = {
+const initialStateRobots: GetRobots = {
   isPending: false,
   robots: [],
   error: '',
 };
 
-export const searchRobots = (state = initialStateSearch, action) => {
+export const searchRobots = (state = initialStateSearch, action: RobotsSearchAction): SearchState => {
   const { type, payload } = action;
 
   switch (type) {
@@ -22,7 +23,7 @@ export const searchRobots = (state = initialStateSearch, action) => {
   }
 };
 
-export const requestRobots = (state = initialStateRobots, action) => {
+export const requestRobots = (state = initialStateRobots, action: GetRobotsAction): GetRobots => {
   const { type, payload } = action;
 
   switch (type) {

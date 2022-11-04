@@ -1,4 +1,10 @@
-const Card = ({ name, email, id }) => {
+interface CardProps {
+  id: number | string;
+  name: string;
+  email: string;
+}
+
+const Card = ({ name, email, id }: CardProps): JSX.Element => {
   return (
     <div className='tc bg-light-green dib br3 pa3 ma2 grow bw2 shadow-5'>
       <img src={`https://robohash.org/${id}?size=200x200`} alt='Robot' />

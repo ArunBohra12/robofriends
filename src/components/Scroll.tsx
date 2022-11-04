@@ -1,4 +1,10 @@
-const Scroll = ({ children }) => {
+import React from 'react';
+
+interface ScrollProps {
+  children: React.ReactNode;
+}
+
+const Scroll = ({ children }: ScrollProps): JSX.Element => {
   return (
     <div
       style={{

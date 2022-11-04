@@ -1,6 +1,11 @@
+import { Robot } from '../models/types';
 import Card from './Card';
 
-const CardList = ({ robots }) => {
+interface CardListProps {
+  robots: Array<Robot>;
+}
+
+const CardList = ({ robots }: CardListProps): JSX.Element => {
   return (
     <div>
       {robots.map((user, i) => (

@@ -1,30 +1,35 @@
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { ChangeEvent, useEffect } from 'react';
+
+import { useAppDispatch, useAppSelector } from '../models/reactReduxHooks';
+import { setSearchField, requestRobots } from '../redux/actions/actions';
+import { Robot } from '../models/types';
+
 import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
-import { setSearchField, requestRobots } from '../redux/actions/actions';
 
 import './App.css';
 
 const App = () => {
-  const state = useSelector(state => state);
-  const dispatch = useDispatch();
+  const state = useAppSelector(state => state);
+  const dispatch = useAppDispatch();
 
   const {
     searchRobots: { searchField },
     requestRobots: { isPending, robots, error },
   } = state;
 
-  const onSearchChange = e => dispatch(setSearchField(e.target.value));
+  const onSearchChange: (e: ChangeEvent<HTMLInputElement>) => void = e => {
+    dispatch(setSearchField(e.target.value));
+  };
 
   useEffect(() => {
-    dispatch(() => requestRobots(dispatch));
+    requestRobots(dispatch);
   }, []);
 
-  const filteredRobots = robots.filter(robot =>
-    robot.name.toLowerCase().includes(searchField.toLowerCase())
-  );
+  const filteredRobots = robots.filter((robot: Robot) => {
+    return robot.name.toLowerCase().includes(searchField.toLowerCase());
+  });
 
   if (error) {
     return <h1 className='tc mt5'>Something bad happened!</h1>;
